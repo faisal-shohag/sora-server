@@ -16,7 +16,7 @@ const signup = async (req, res) => {
     const jwtToken = jwt.sign(
       { email, _id: newUser._id },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "3y" }
     );
     res.cookie('jwt_token', jwtToken, { httpOnly: true, maxAge: maxAge * 1000, sameSite: "none", secure: true });
   } catch (err) {
