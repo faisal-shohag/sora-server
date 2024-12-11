@@ -5,7 +5,8 @@ import cors from "cors";
 import "dotenv/config";
 import './models/db.js'
 import authRouter from "./routes/auth-router.js";
-import { authentication } from "./middlewares/auth.js";
+import { userAuthentication, adminAuthentication } from "./middlewares/auth.js";
+import user from "./routes/user.js"
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -32,14 +33,18 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/auth', authRouter)
+app.use(user)
 
 
 app.get("/", (req, res) => {
   res.send("🚀 Working fine!");
 });
 
-app.get('/find', authentication, (req, res) => {
-  res.send('🚀 Secret revealed!');
+app.get('/find', userAuthentication, (req, res) => {
+  res.send('🚀 Secret revealed for user!');
+})
+app.get('/admin', adminAuthentication, (req, res) => {
+  res.send('🚀 Secret revealed for Admin!');
 })
 
 
