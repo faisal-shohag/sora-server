@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://taskph12.netlify.app"],
+    origin: ["http://localhost:5173", "https://sora-vocab.netlify.app"],
     credentials: true,
   })
 );
