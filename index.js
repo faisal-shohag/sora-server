@@ -15,14 +15,15 @@ const PORT = process.env.PORT || 5000;
 //   secure: process.env.NODE_ENV === "production",
 //   sameSite: process.env.NODE_ENV === "production" ? "none" : "strict",
 // };
+//["http://localhost:5173", "https://sora-vocab.vercel.app", "https://sora-vocab.netlify.app"]
 
+app.use(cookieParser());
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://sora-vocab.vercel.app", "https://sora-vocab.netlify.app"],
+    origin: "https://sora-vocab.vercel.app",
     credentials: true,
   })
 );
-app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/auth', authRouter)
