@@ -46,7 +46,7 @@ const login = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.status(200).cookie("token", jwtToken, {
+    res.status(200).cookie("loginToken", jwtToken, {
         httpOnly: true,
         secure: true,
         sameSite: "none",
