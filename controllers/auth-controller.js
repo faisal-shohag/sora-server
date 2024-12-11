@@ -1,6 +1,7 @@
 import UserModel from "../models/user.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+const maxAge = 3 * 365 * 24 * 60 * 60 * 1000;
 
 const signup = async (req, res) => {
   const { name, email, password } = req.body;
@@ -18,7 +19,9 @@ const signup = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "3y" }
     );
-    res.cookie('jwt_token', jwtToken, { httpOnly: true, maxAge: maxAge * 1000, sameSite: "none", secure: true });
+    console.log(jwtToken)
+  res.cookie('jwt_token', jwtToken, { httpOnly: true, maxAge: maxAge * 1000, sameSite: "none", secure: true });
+    return res.status(201).json({ message: "Successfully signed up!", success: true });  
   } catch (err) {
     // const errors = handleErrors(err);
     console.log(err);
