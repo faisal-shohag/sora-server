@@ -43,10 +43,10 @@ const login = async (req, res) => {
     const jwtToken = jwt.sign(
       { email: user.email, _id: user._id },
       process.env.JWT_SECRET,
-      { expiresIn: "1d" }
+      { expiresIn: "3y" }
     );
 
-    res.status(200).cookie("loginToken", jwtToken, {
+    res.status(200).cookie("jwt_token", jwtToken, {
         httpOnly: true,
         secure: true,
         sameSite: "none",
