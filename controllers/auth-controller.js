@@ -18,11 +18,11 @@ const signup = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
-    res.cookie("token", jwtToken, {
+    res.status(200).cookie("token", jwtToken, {
       httpOnly: true,
       secure: true,
       // sameSite: "none",
-      maxAge: 24 * 60 * 60 * 1000,
+      // maxAge: 24 * 60 * 60 * 1000,
     }).json({message: "Successfully signedup!"});
   } catch (err) {
     // const errors = handleErrors(err);
@@ -48,11 +48,11 @@ const login = async (req, res) => {
       { expiresIn: "1d" }
     );
 
-    res.cookie("token", jwtToken, {
+    res.status(200).cookie("token", jwtToken, {
         httpOnly: true,
         secure: true,
         // sameSite: "none",
-        maxAge: 24 * 60 * 60 * 1000,
+        // maxAge: 24 * 60 * 60 * 1000,
       }).json({message: "Successfully logged in!"});
 
   } catch (err) {
