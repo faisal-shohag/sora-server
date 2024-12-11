@@ -21,7 +21,7 @@ const signup = async (req, res) => {
     res.cookie("token", jwtToken, {
       httpOnly: true,
       secure: true,
-      sameSite: "none",
+      // sameSite: "none",
       maxAge: 24 * 60 * 60 * 1000,
     }).json({message: "Successfully signedup!"});
   } catch (err) {
@@ -51,7 +51,7 @@ const login = async (req, res) => {
     res.cookie("token", jwtToken, {
         httpOnly: true,
         secure: true,
-        sameSite: "none",
+        // sameSite: "none",
         maxAge: 24 * 60 * 60 * 1000,
       }).json({message: "Successfully logged in!"});
 
