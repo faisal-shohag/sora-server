@@ -18,12 +18,7 @@ const signup = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1d" }
     );
-    res.status(200).cookie("token", jwtToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: "lax",
-      maxAge: 3 * 24 * 60 * 60 * 1000,
-    }).send({message: "Successfully signedup!"});
+    res.cookie('jwt_token', token, { httpOnly: true, maxAge: maxAge * 1000, sameSite: "none", secure: true });
   } catch (err) {
     // const errors = handleErrors(err);
     console.log(err);
