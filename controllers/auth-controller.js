@@ -21,8 +21,8 @@ const signup = async (req, res) => {
     res.status(200).cookie("token", jwtToken, {
       httpOnly: true,
       secure: true,
-      // sameSite: "none",
-      // maxAge: 24 * 60 * 60 * 1000,
+      sameSite: "none",
+      maxAge: 24 * 60 * 60 * 1000,
     }).json({message: "Successfully signedup!"});
   } catch (err) {
     // const errors = handleErrors(err);
@@ -51,8 +51,8 @@ const login = async (req, res) => {
     res.status(200).cookie("token", jwtToken, {
         httpOnly: true,
         secure: true,
-        // sameSite: "none",
-        // maxAge: 24 * 60 * 60 * 1000,
+        sameSite: "none",
+        maxAge: 24 * 60 * 60 * 1000,
       }).json({message: "Successfully logged in!"});
 
   } catch (err) {
