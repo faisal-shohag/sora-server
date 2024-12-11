@@ -22,8 +22,8 @@ const signup = async (req, res) => {
       httpOnly: true,
       secure: true,
       sameSite: "none",
-      maxAge: 24 * 60 * 60 * 1000,
-    }).json({message: "Successfully signedup!"});
+      maxAge: 3 * 24 * 60 * 60 * 1000,
+    }).send({message: "Successfully signedup!"});
   } catch (err) {
     // const errors = handleErrors(err);
     console.log(err);
@@ -52,7 +52,7 @@ const login = async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "none",
-        maxAge: 24 * 60 * 60 * 1000,
+        maxAge: 3 * 24 * 60 * 60 * 1000,
       }).json({message: "Successfully logged in!"});
 
   } catch (err) {
