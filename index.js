@@ -13,6 +13,7 @@ import manageUser from "./routes/admin/manage-user.js"
 import userLessons from './routes/user/lesson.js'
 import manageTutorial from "./routes/admin/manage-tutorial.js";
 import tutorials from "./routes/user/tutorials.js";
+import dashboard from "./routes/admin/dashboard.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -43,6 +44,7 @@ app.use('/admin', adminAuthentication, lessons)
 app.use('/admin', adminAuthentication, vocabulary)
 app.use('/admin', adminAuthentication, manageUser)
 app.use('/admin', adminAuthentication, manageTutorial)
+app.use('/admin', adminAuthentication, dashboard)
 app.use('/api', userAuthentication, userLessons)
 app.use('/api', userAuthentication, tutorials)
 
