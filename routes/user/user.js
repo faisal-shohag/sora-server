@@ -1,6 +1,6 @@
 import { Router } from "express";
 import jwt from "jsonwebtoken";
-import UserModel from "../models/user.js";
+import UserModel from "../../models/user.js";
 const router = Router();
 
 router.get("/user", async (req, res) => {
@@ -21,5 +21,7 @@ router.get("/user", async (req, res) => {
       .json({ message: "Internal server error", success: false });
   }
 });
+
+
 
 export default router;

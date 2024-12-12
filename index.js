@@ -6,11 +6,13 @@ import "dotenv/config";
 import './models/db.js'
 import authRouter from "./routes/auth-router.js";
 import { userAuthentication, adminAuthentication } from "./middlewares/auth.js";
-import user from "./routes/user.js"
+import user from "./routes/user/user.js"
 import lessons from "./routes/admin/lessons.js"
 import vocabulary from "./routes/admin/vocabulary.js"
 import manageUser from "./routes/admin/manage-user.js"
-
+import userLessons from './routes/user/lesson.js'
+import manageTutorial from "./routes/admin/manage-tutorial.js";
+import tutorials from "./routes/user/tutorials.js";
 const app = express();
 const PORT = process.env.PORT || 5000;
 
@@ -40,16 +42,19 @@ app.use(user)
 app.use('/admin', adminAuthentication, lessons)
 app.use('/admin', adminAuthentication, vocabulary)
 app.use('/admin', adminAuthentication, manageUser)
+app.use('/admin', adminAuthentication, manageTutorial)
+app.use('/api', userAuthentication, userLessons)
+app.use('/api', userAuthentication, tutorials)
 
 
 app.get("/", (req, res) => {
   res.send("🚀 Working fine!");
 });
 
-app.get('/find', userAuthentication, (req, res) => {
+app.get('/u', userAuthentication, (req, res) => {
   res.send('🚀 Secret revealed for user!');
 })
-app.get('/admin', adminAuthentication, (req, res) => {
+app.get('/a', adminAuthentication, (req, res) => {
   res.send('🚀 Secret revealed for Admin!');
 })
 
