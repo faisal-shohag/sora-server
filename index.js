@@ -7,6 +7,9 @@ import './models/db.js'
 import authRouter from "./routes/auth-router.js";
 import { userAuthentication, adminAuthentication } from "./middlewares/auth.js";
 import user from "./routes/user.js"
+import lessons from "./routes/admin/lessons.js"
+import vocabulary from "./routes/admin/vocabulary.js"
+import manageUser from "./routes/admin/manage-user.js"
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -34,6 +37,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/auth', authRouter)
 app.use(user)
+app.use('/admin', adminAuthentication, lessons)
+app.use('/admin', adminAuthentication, vocabulary)
+app.use('/admin', adminAuthentication, manageUser)
 
 
 app.get("/", (req, res) => {

@@ -5,7 +5,6 @@ const router = Router();
 
 router.get("/user", async (req, res) => {
   const token = req.cookies.jwt_token;
-  console.log(token);
 
   try {
     if (!token)
@@ -14,7 +13,6 @@ router.get("/user", async (req, res) => {
     if (!decoded)
       return res.status(401).json({ message: "Unauthorized", success: false });
     const user = await UserModel.findOne({ email: decoded.email });
-    // console.log(user);
     return res.status(200).json({ message: "User found", success: true, user });
   } catch (error) {
     console.log(error);
